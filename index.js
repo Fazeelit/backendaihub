@@ -23,14 +23,32 @@ const app = express();
 =====================================================
 */
 // ------------------ CORS Setup ------------------
+const normalizeOrigin = (origin) => origin.replace(/\/+$/, "");
+
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://aihubfrontend.vercel.app/",
-];
+  "https://aihubfrontend.vercel.app",
+  ...config.webAppUrl,
+]
+  .filter(Boolean)
+  .map(normalizeOrigin);
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin(origin, callback) {
+      // Allow server-to-server requests and same-origin tools with no Origin header.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      const normalizedOrigin = normalizeOrigin(origin);
+
+      if (allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -58,6 +76,10 @@ if (process.env.NODE_ENV === "development") {
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
+});
+
+app.get("/api", (req, res) => {
+  res.json({ message: "API is running" });
 });
 
 /*
