@@ -1,12 +1,8 @@
-// server.js
 import express from "express";
 import morgan from "morgan";
-import dotenv from "dotenv";
 import cors from "cors";
 import http from "http";
-
-// Load environment variables
-dotenv.config();
+import "./config/loadEnv.js";
 
 // ------------------ Database ------------------
 import dbConnect from "./config/database.js";
