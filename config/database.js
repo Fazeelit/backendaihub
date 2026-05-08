@@ -35,7 +35,7 @@ const dbConnect = async () => {
 
     try {
       await mongoose.connect(candidate);
-      console.log("MongoDB connected successfully");
+      console.log("✅MongoDB connected successfully");
 
       mongoose.connection.on("error", (err) => {
         console.error("MongoDB connection error:", err);
