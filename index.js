@@ -25,7 +25,7 @@ const app = express();
 // ------------------ CORS Setup ------------------
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://muhafizdashboardproject.vercel.app",
+  "https://aihubfrontend.vercel.app/",
 ];
 
 app.use(
