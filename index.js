@@ -22,29 +22,15 @@ const app = express();
  CORS Middleware (LAN Safe Production Version)
 =====================================================
 */
+// ------------------ CORS Setup ------------------
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://muhafizdashboardproject.vercel.app",
+];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || origin === "null") return callback(null, true);
-
-      const allowedOrigins = (process.env.WEBAPP_URL || "")
-        .split(",")
-        .map((v) => v.trim())
-        .filter(Boolean);
-
-      const isAllowed =
-        allowedOrigins.includes(origin) ||
-        /^https?:\/\/(192\.168|10\.|172\.(1[6-9]|2\d|3[0-1]))/.test(origin) ||
-        /^https?:\/\/localhost/.test(origin) ||
-        /^https?:\/\/127\.0\.0\.1/.test(origin);
-
-      if (isAllowed) {
-        return callback(null, true);
-      }
-
-      return callback(new Error("Not allowed by CORS"));
-    },
+    origin: allowedOrigins,
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
