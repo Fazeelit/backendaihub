@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: smartaihub-backend
+    env: node
+    plan: free
+    buildCommand: yarn install
+    startCommand: yarn start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: WEBAPP_URL
+        sync: false

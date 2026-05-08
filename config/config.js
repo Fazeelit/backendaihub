@@ -1,14 +1,17 @@
-import "./loadEnv.js";
+import dotenv from "dotenv";
+import path from "path";
+
+// Load the main .env file (since you currently have only .env)
+dotenv.config({ path: path.resolve(".env") });
+
+console.log(`✅ Loaded environment variables from .env`);
 
 export default {
-  port: process.env.PORT || 3000,
-  host: process.env.HOST || "127.0.0.1",
+  port: process.env.PORT || 8000,
+  host: process.env.HOST || "0.0.0.0",
 
   // MongoDB
-  mongodbUri:
-    process.env.MONGO_URI ||
-    process.env.MONGO_URI_DIRECT ||
-    "mongodb://localhost:27017/Darazdb",
+  mongodbUri: process.env.MONGO_URI || "mongodb://fazeelahmaditjam:Fazeel%4012345@ac-olun2jj-shard-00-00.knq2f6l.mongodb.net:27017,ac-olun2jj-shard-00-01.knq2f6l.mongodb.net:27017,ac-olun2jj-shard-00-02.knq2f6l.mongodb.net:27017/Smart_AI_Hub?ssl=true&authSource=admin&replicaSet=atlas-7suu85-shard-0",
 
   // JWT
   jwtSecret: process.env.JWT_SECRET || "default_secret_key",
