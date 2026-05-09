@@ -13,6 +13,7 @@ import config from "./config/config.js";
 
 // ------------------ Routes ------------------
 import adminRoutes from "./routes/adminroute.js";
+import onboardingRoutes from "./routes/onboardingroute.js";
 import userRoutes from "./routes/usersroute.js";
 
 const app = express();
@@ -89,6 +90,7 @@ app.get("/api", (req, res) => {
 */
 
 app.use("/api/admin", adminRoutes);
+app.use("/api/onboarding", onboardingRoutes);
 app.use("/api/users", userRoutes);
 
 /*
