@@ -12,7 +12,6 @@ dbConnect();
 import config from "./config/config.js";
 
 // ------------------ Routes ------------------
-import adminRoutes from "./routes/adminroute.js";
 import onboardingRoutes from "./routes/onboardingroute.js";
 import userDashboardRoutes from "./routes/userdashboardroute.js";
 import userRoutes from "./routes/usersroute.js";
@@ -91,7 +90,6 @@ app.get("/api", (req, res) => {
 =====================================================
 */
 
-app.use("/api/admin", adminRoutes);
 app.use("/api/onboarding", onboardingRoutes);
 app.use("/api/userdashboard", userDashboardRoutes);
 app.use("/api/users", userRoutes);
